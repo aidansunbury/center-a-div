@@ -15,11 +15,9 @@ import { cn } from "@/lib/utils";
 import { useAtom } from "jotai";
 import { MoveUpRight } from "lucide-react";
 import Link from "next/link";
-import { useEffect } from "react";
 
 export function Box({ index }: { index: number }) {
   const [container, setContainer] = useAtom(containerAtom);
-  useEffect(() => console.log(container), [container]);
   return (
     <ContextMenu>
       <ContextMenuTrigger asChild>
