@@ -28,11 +28,11 @@ export default function Home() {
   return (
     <CopyProvider>
       <div className="flex min-h-screen items-center justify-center bg-gradient-to-tl from-blue-100 via-blue-200 to-blue-300">
-        <main className="flex relative w-full max-w-screen-md flex-col items-center justify-start rounded-lg bg-gray-50 bg-opacity-30 p-5 px-4 sm:px-6 lg:px-8">
+        <main className="relative flex w-full max-w-screen-md flex-col items-center justify-start rounded-lg bg-gray-50 bg-opacity-30 p-5 px-4 sm:px-6 lg:px-8">
           <Link
             href="https://github.com/aidansunbury/center-a-div"
             target="_blank"
-            className="size-8 absolute top-2 right-2"
+            className="absolute top-2 right-2 size-8"
           >
             <svg
               role="img"
@@ -44,7 +44,7 @@ export default function Home() {
             </svg>
           </Link>
 
-          <h1 className="font-mono text-4xl my-2">Center a {"<div>"}</h1>
+          <h1 className="my-2 font-mono text-4xl">Center a {"<div>"}</h1>
           <span className="text-secondary-foreground">
             Interactively visualize css flexbox using tailwindcss
           </span>
@@ -59,7 +59,7 @@ export default function Home() {
                 className="size-6 data-[state=checked]:bg-red-500"
                 onCheckedChange={(checked) =>
                   setStyles((draft) => {
-                    draft.mainAxisVisible = checked;
+                    draft.mainAxisVisible = checked as boolean;
                   })
                 }
                 checked={styles.mainAxisVisible}
@@ -73,7 +73,7 @@ export default function Home() {
                 className="size-6"
                 onCheckedChange={(checked) =>
                   setStyles((draft) => {
-                    draft.crossAxisVisible = checked;
+                    draft.crossAxisVisible = checked as boolean;
                   })
                 }
                 checked={styles.crossAxisVisible}
@@ -124,7 +124,7 @@ export default function Home() {
                   target="_blank"
                   className="flex flex-row items-center"
                 >
-                  <span className="mr-2">Align Content</span>
+                  <span className="mr-2">Align Items</span>
                   <MoveUpRight size={16} />
                 </Link>
               </Label>

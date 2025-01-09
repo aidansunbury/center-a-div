@@ -1,5 +1,3 @@
-import { atom } from "jotai";
-
 export const containerOptions = {
   flex: ["flex-row", "flex-col", "flex-row-reverse", "flex-col-reverse"],
   justify: [

@@ -1,41 +1,24 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Center a <div>
 
-## Getting Started
+Remembering the difference between `items-end` and `justify-end` is hard, and even more difficult to visualize in your head. This interactive demo makes it easy to get a grasp on using flex box with tailwind css by allowing you to...
 
-First, run the development server:
+1. Toggle the Flex Direction, Alignment, and Justifyment (Justifying?) of items in a container
+2. Override the container Alignment by adding self alignment to any of the boxes
+3. Clearly view and toggle the visibility of the main and cross axes
+4. View a live updating code output that can easily be copied to the clipboard.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
+In the future, I may also add a visualization for grid layouts or add more classNames to apply to individual boxes.
+
+## Running Locally
+
+This project is just a static next-js site.
+
+```sh
+bun install
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-
-https://css-tricks.com/snippets/css/a-guide-to-flexbox/
-
-https://www.npmjs.com/package/js-beautify
+It uses
+- [Shiki](https://shiki.matsu.io/) code highlighter
+- [js-beautify](https://github.com/beautifier/js-beautify) for syntax formatting
+- [Jotai with immer](https://jotai.org/docs/extensions/immer) for state management

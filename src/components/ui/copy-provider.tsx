@@ -18,6 +18,7 @@ export const CopyProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [copiedText, copyToClipboard] = useCopyToClipboard();
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   const updateClipboardText = useCallback(async () => {
     try {
       const text = await navigator.clipboard.readText();
