@@ -15,24 +15,27 @@ import { cn } from "@/lib/utils";
 import { useAtom } from "jotai";
 import { MoveUpRight } from "lucide-react";
 import Link from "next/link";
+import { useEffect } from "react";
 
 export function Box({ index }: { index: number }) {
   const [container, setContainer] = useAtom(containerAtom);
-
+  useEffect(() => console.log(container), [container]);
   return (
     <ContextMenu>
-      <ContextMenuTrigger
-        className={cn(
-          "z-30 size-20 p-1 opacity-80",
-          container.boxes[index].align,
-          {
-            "bg-green-500": index === 0,
-            "bg-red-500": index === 1,
-            "bg-blue-500": index === 2,
-          },
-        )}
-      >
-        {index + 1}
+      <ContextMenuTrigger asChild>
+        <div
+          className={cn(
+            "z-30 size-20 p-1 opacity-80",
+            container.boxes[index].align,
+            {
+              "bg-green-500": index === 0,
+              "bg-red-500": index === 1,
+              "bg-blue-500": index === 2,
+            },
+          )}
+        >
+          {index + 1}
+        </div>
       </ContextMenuTrigger>
       <ContextMenuContent>
         <ContextMenuLabel>
