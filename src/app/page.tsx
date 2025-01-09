@@ -49,7 +49,8 @@ export default function Home() {
             Interactively visualize css flexbox using tailwindcss
           </span>
           <span className="font-semibold text-secondary-foreground italic">
-            Right click on an individual box to edit its styles
+            Right click on an individual box to edit its styles (press and hold
+            on mobile)
           </span>
 
           {/* View Axes checkboxes */}
