@@ -1,42 +1,60 @@
 "use client";
 
-import { colorMapping, boxOptions } from "@/lib/constants";
 import {
   ContextMenu,
-  ContextMenuContent,
   ContextMenuCheckboxItem,
-  ContextMenuTrigger,
+  ContextMenuContent,
   ContextMenuLabel,
   ContextMenuSeparator,
+  ContextMenuTrigger,
 } from "@/components/ui/context-menu";
+import { boxOptions } from "@/lib/constants";
+
+import { containerAtom } from "@/hooks/atoms";
+import { cn } from "@/lib/utils";
 import { useAtom } from "jotai";
-import { boxesAtom } from "@/lib/constants";
+import { MoveUpRight } from "lucide-react";
+import Link from "next/link";
 
 export function Box({ index }: { index: number }) {
-  const [boxes, setBoxes] = useAtom(boxesAtom);
-  const currentBox = boxes[index];
+  const [container, setContainer] = useAtom(containerAtom);
+
   return (
     <ContextMenu>
-      <ContextMenuTrigger className={`z-30 ${currentBox.align}`}>
-        <div className={`size-16 p-1 ${colorMapping[index]} opacity-80`}>
-          {index}
-        </div>
+      <ContextMenuTrigger
+        className={cn(
+          "z-30 size-20 p-1 opacity-80",
+          container.boxes[index].align,
+          {
+            "bg-green-500": index === 0,
+            "bg-red-500": index === 1,
+            "bg-blue-500": index === 2,
+          },
+        )}
+      >
+        {index + 1}
       </ContextMenuTrigger>
       <ContextMenuContent>
-        <ContextMenuLabel>Align Self</ContextMenuLabel>
+        <ContextMenuLabel>
+          <Link
+            href={"https://tailwindcss.com/docs/align-self"}
+            target="_blank"
+            className="flex flex-row items-center"
+          >
+            <span className="mr-2">Align Self</span>
+            <MoveUpRight size={16} />
+          </Link>
+        </ContextMenuLabel>
         <ContextMenuSeparator />
         {boxOptions.align.map((option) => (
           <ContextMenuCheckboxItem
             key={option}
-            checked={currentBox.align === option}
+            checked={container.boxes[index].align === option}
             onCheckedChange={(checked) => {
               if (checked) {
-                const firstHalf = boxes.slice(0, index);
-                const secondHalf = boxes.slice(index + 1);
-                const newBox = {
-                  align: option,
-                };
-                setBoxes([...firstHalf, newBox, ...secondHalf]);
+                setContainer((draft) => {
+                  draft.boxes[index].align = option;
+                });
               }
             }}
           >

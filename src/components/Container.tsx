@@ -1,27 +1,26 @@
 "use client";
 
-import type { ContainerStyles } from "@/lib/constants";
 import { cn, expand } from "@/lib/utils";
-import { MoveRight } from "lucide-react";
 
-import { defaultContainer } from "@/lib/constants";
+import { containerAtom } from "@/hooks/atoms";
+import { useAtom } from "jotai";
+
 import { Axes } from "./Axes";
 import { Box } from "./Box";
-import { useAtomValue } from "jotai";
-import { boxesAtom } from "@/lib/constants";
 
-export function Container({ styles }: { styles: ContainerStyles }) {
-  const { ...container } = styles;
+export function Container() {
+  const [styles] = useAtom(containerAtom);
 
-  const boxes = useAtomValue(boxesAtom);
+  const { boxes, crossAxisVisible, mainAxisVisible, ...container } = styles;
+
   return (
-    <div className="h-96 w-96 self-center">
+    <div className="h-96 w-96 self-center rounded-md rounded-md border-4">
       {/* {JSON.stringify(styles)} */}
       {/* {JSON.stringify(expand(styles))} */}
       <div className="relative size-full items-center justify-center">
         <Axes flex={styles.flex} />
-        <div className={cn("flex size-full bg-slate-400", expand(styles))}>
-          {boxes.map((value, index) => (
+        <div className={cn("flex size-full bg-gray-200", expand(container))}>
+          {boxes.map((_value, index) => (
             // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
             <Box index={index} key={index} />
           ))}

@@ -26,10 +26,10 @@ export function CodeBlock({ code }: { code: string }) {
   return (
     <div className="w-full rounded-lg bg-code">
       <div className="flex min-w-full flex-row items-center rounded-t-lg bg-gray-200">
-        <h1 className="ml-2">Layout.tsx</h1>
+        <h1 className="ml-2 font-mono">Code</h1>
         <CopyButton text={formattedCode} className="ml-auto" />
       </div>
-      <div className="flex flex-col overflow-x-scroll p-2">
+      <div className="flex flex-col overflow-x-auto p-2">
         {/* biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation> */}
         <div dangerouslySetInnerHTML={{ __html: html }} />
       </div>

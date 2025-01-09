@@ -19,5 +19,5 @@ export function parseCodeBlock(styles: ContainerStyles) {
     styles.flex,
     styles.justify,
   ];
-  return `<div className="${classNames.sort().join(" ")}"><div className="size-10 bg-red-400" /></div>`;
+  return `<div className="${classNames.sort().join(" ")}">${styles.boxes.map((box, index) => `<div className="${box.align} size-16">${index + 1}</div>`).join(" ")}</div>`;
 }
