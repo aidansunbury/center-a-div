@@ -14,7 +14,7 @@ export function Container() {
   const { boxes, crossAxisVisible, mainAxisVisible, ...container } = styles;
 
   return (
-    <div className="h-96 w-96 self-center rounded-md rounded-md border-4">
+    <div className="size-72 self-center rounded-md rounded-md border-4 sm:size-96">
       {/* {JSON.stringify(styles)} */}
       {/* {JSON.stringify(expand(styles))} */}
       <div className="relative size-full items-center justify-center">

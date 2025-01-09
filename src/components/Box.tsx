@@ -23,7 +23,7 @@ export function Box({ index }: { index: number }) {
       <ContextMenuTrigger asChild>
         <div
           className={cn(
-            "z-30 size-20 p-1 opacity-80",
+            "z-30 size-16 p-1 opacity-80 sm:size-20",
             container.boxes[index].align,
             {
               "bg-green-500": index === 0,
