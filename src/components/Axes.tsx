@@ -4,39 +4,33 @@ import { HorizontalArrows } from "./icons/HorizontalArrows";
 import { VerticalArrows } from "./icons/VerticalArrows";
 
 import type { ContainerStyles } from "@/lib/constants";
-import { cn } from "@/lib/utils";
 
 export function Axes({ flex }: { flex: ContainerStyles["flex"] }) {
-  if (flex === "flex-row") {
-    return (
-      <>
-        <HorizontalArrows left={false} right={true} isMain={true} />
-        <VerticalArrows top={true} bottom={true} isMain={false} />
-      </>
-    );
-  }
-  if (flex === "flex-col") {
-    return (
-      <>
-        <HorizontalArrows left={true} right={true} isMain={false} />
-        <VerticalArrows top={false} bottom={true} isMain={true} />
-      </>
-    );
-  }
-  if (flex === "flex-row-reverse") {
-    return (
-      <>
-        <HorizontalArrows left={true} right={false} isMain={true} />
-        <VerticalArrows top={true} bottom={true} isMain={false} />
-      </>
-    );
-  }
+  const config = {
+    "flex-row": {
+      horizontal: { left: false, right: true, isMain: true },
+      vertical: { top: true, bottom: true, isMain: false },
+    },
+    "flex-col": {
+      horizontal: { left: true, right: true, isMain: false },
+      vertical: { top: false, bottom: true, isMain: true },
+    },
+    "flex-row-reverse": {
+      horizontal: { left: true, right: false, isMain: true },
+      vertical: { top: true, bottom: true, isMain: false },
+    },
+    "flex-col-reverse": {
+      horizontal: { left: true, right: true, isMain: false },
+      vertical: { top: true, bottom: false, isMain: true },
+    },
+  };
 
-  // flex-col-reverse
+  const { horizontal, vertical } = config[flex];
+
   return (
     <>
-      <HorizontalArrows left={true} right={true} isMain={false} />
-      <VerticalArrows top={true} bottom={false} isMain={true} />
+      <HorizontalArrows {...horizontal} />
+      <VerticalArrows {...vertical} />
     </>
   );
 }
