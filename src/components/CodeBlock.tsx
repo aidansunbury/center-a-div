@@ -1,38 +1,38 @@
-import type { BundledLanguage } from "shiki";
+"use client";
+
+import { html_beautify } from "js-beautify";
+import { useEffect, useState } from "react";
 import { codeToHtml } from "shiki";
-import { useQuery } from "@tanstack/react-query";
+import { CopyButton } from "./ui/copy-button";
 
-export function Test() {
-  return (
-    <main>
-      <CodeBlock lang="tsx">
-        {[
-          '<div className="flex size-full flex-row items-end justify-evenly bg-slate-400">',
-          '  <div className="size-10 bg-red-400" />',
-          "</div>",
-        ].join("\n")}
-      </CodeBlock>
-    </main>
-  );
-}
-
-interface Props {
-  children: string;
-  lang: BundledLanguage;
-}
-
-function CodeBlock(props: Props) {
-  const { data, isPending, isError } = useQuery({
-    queryKey: ["todos"],
-    queryFn: async () => {
-      return await codeToHtml(props.children, {
-        lang: props.lang,
-        theme: "github-dark",
-      });
-    },
+export function CodeBlock({ code }: { code: string }) {
+  const [html, setHtml] = useState<string | undefined>(undefined);
+  const formattedCode = html_beautify(code, {
+    indent_size: 2,
   });
 
-  if (isPending || isError) return <div>Loading...</div>;
-  // biome-ignore lint/security/noDangerouslySetInnerHtml: <whole point of this component>
-  return <div dangerouslySetInnerHTML={{ __html: data }} />;
+  useEffect(() => {
+    (async () => {
+      const result = await codeToHtml(formattedCode, {
+        lang: "tsx",
+        theme: "github-dark",
+      });
+      setHtml(result);
+    })();
+  }, [formattedCode]);
+
+  if (!html) return <div>Loading...</div>;
+
+  return (
+    <div className="w-full rounded-lg bg-code">
+      <div className="flex min-w-full flex-row items-center rounded-t-lg bg-gray-200">
+        <h1 className="ml-2">Layout.tsx</h1>
+        <CopyButton text={formattedCode} className="ml-auto" />
+      </div>
+      <div className="flex flex-col overflow-x-scroll p-2">
+        {/* biome-ignore lint/security/noDangerouslySetInnerHtml: <explanation> */}
+        <div dangerouslySetInnerHTML={{ __html: html }} />
+      </div>
+    </div>
+  );
 }
