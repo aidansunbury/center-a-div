@@ -1,4 +1,4 @@
-# Center a <div>
+# Center a &lt;div&gt;
 
 Remembering the difference between `items-end` and `justify-end` is hard, and even more difficult to visualize in your head. This interactive demo makes it easy to get a grasp on using flex box with tailwind css by allowing you to...
 
